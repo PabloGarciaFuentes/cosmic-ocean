@@ -1,0 +1,116 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = 'Cosmic Ocean | Electronic Music Artist',
+  description = 'Cosmic Ocean is an electronic music producer and DJ crafting immersive sonic journeys through progressive house, dance, and house music.'
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    
+    <title>{title}</title>
+  </head>
+  <body>
+    <!-- Cosmic Background Layer -->
+    <div class="cosmic-bg" aria-hidden="true">
+      <div class="cosmic-gradient"></div>
+      <div class="cosmic-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+      </div>
+    </div>
+    
+    <!-- Main Content -->
+    <slot />
+  </body>
+</html>
+
+<style>
+  .cosmic-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+  }
+  
+  .cosmic-gradient {
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 80% 50% at 20% 40%, rgba(13, 42, 58, 0.5) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 40% at 80% 60%, rgba(26, 10, 46, 0.5) 0%, transparent 50%),
+      radial-gradient(ellipse 100% 80% at 50% 100%, rgba(15, 74, 94, 0.3) 0%, transparent 40%),
+      linear-gradient(180deg, #050508 0%, #0a0a14 50%, #071620 100%);
+  }
+  
+  .cosmic-orbs {
+    position: absolute;
+    inset: 0;
+  }
+  
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.4;
+  }
+  
+  .orb-1 {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.3) 0%, transparent 70%);
+    top: -200px;
+    left: -100px;
+    animation: float 20s ease-in-out infinite;
+  }
+  
+  .orb-2 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.3) 0%, transparent 70%);
+    bottom: -150px;
+    right: -100px;
+    animation: float 25s ease-in-out infinite reverse;
+  }
+  
+  .orb-3 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(0, 255, 212, 0.2) 0%, transparent 70%);
+    top: 40%;
+    left: 60%;
+    animation: float 18s ease-in-out infinite 5s;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -30px) scale(1.05); }
+    66% { transform: translate(-20px, 20px) scale(0.95); }
+  }
+</style>

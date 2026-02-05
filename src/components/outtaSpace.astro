@@ -1,0 +1,120 @@
+<div id="starfield" class="absolute inset-0">
+  <canvas id="starfield-canvas"></canvas>
+</div>
+
+<script type="module">
+  const COUNT = 3200;
+  const SPEED = 0.4;
+  const PARALLAX_INTENSITY = 0.03;
+  const TWINKLE_SPEED = 0.0025;
+  const TWINKLE_INTENSITY = 0.4;
+
+  const STAR_COLORS = [
+    [255, 255, 255], // blanco
+    [180, 210, 255], // azul suave
+    [200, 180, 255], // violeta tenue
+    [160, 200, 255], // celeste
+  ];
+
+  class Star {
+    constructor(x, y, z, size, alpha, phase, color) {
+      this.x = x;
+      this.y = y;
+      this.z = z;
+      this.size = size;
+      this.alpha = alpha;
+      this.phase = phase;
+      this.color = color;
+    }
+
+    update(width, height, time) {
+      this.z -= SPEED;
+      if (this.z <= 0) this.reset(width, height);
+      this.currentAlpha =
+        this.alpha +
+        Math.sin(time * TWINKLE_SPEED + this.phase) *
+          TWINKLE_INTENSITY *
+          this.alpha;
+      this.currentAlpha = Math.min(1, Math.max(0, this.currentAlpha));
+    }
+
+    reset(width, height) {
+      this.x = Math.random() * width - width / 2;
+      this.y = Math.random() * height - height / 2;
+      this.z = width / 2;
+      this.size = Math.random() * 1.5 + 0.3;
+      this.alpha = Math.random() * 0.8 + 0.2;
+      this.phase = Math.random() * Math.PI * 2;
+      this.color = STAR_COLORS[Math.floor(Math.random() * STAR_COLORS.length)];
+    }
+
+    draw(ctx, width, height, offsetX, offsetY) {
+      const sx =
+        (this.x / this.z) * width +
+        width / 2 +
+        offsetX * this.z * PARALLAX_INTENSITY;
+      const sy =
+        (this.y / this.z) * height +
+        height / 2 +
+        offsetY * this.z * PARALLAX_INTENSITY;
+      const radius = this.size * (1 - this.z / (width / 2));
+
+      const [r, g, b] = this.color;
+      ctx.beginPath();
+      ctx.arc(sx, sy, radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${r},${g},${b},${this.currentAlpha})`;
+      ctx.fill();
+    }
+  }
+
+  const canvas = document.getElementById("starfield-canvas");
+  const ctx = canvas.getContext("2d");
+  const container = document.getElementById("starfield");
+  const stars = [];
+  let width, height;
+  let offsetX = 0,
+    offsetY = 0;
+  let time = 0;
+
+  function setup() {
+    width = container.clientWidth;
+    height = container.clientHeight;
+    canvas.width = width;
+    canvas.height = height;
+    stars.length = 0;
+
+    for (let i = 0; i < COUNT; i++) {
+      stars.push(
+        new Star(
+          Math.random() * width - width / 2,
+          Math.random() * height - height / 2,
+          (Math.random() * width) / 2,
+          Math.random() * 1.5 + 0.3,
+          Math.random() * 0.8 + 0.2,
+          Math.random() * Math.PI * 2,
+          STAR_COLORS[Math.floor(Math.random() * STAR_COLORS.length)],
+        ),
+      );
+    }
+  }
+
+  function frame() {
+    time += 1;
+
+    // Clear canvas instead of opaque fill for transparency
+    ctx.clearRect(0, 0, width, height);
+
+    // Estrellas
+    for (const star of stars) {
+      star.update(width, height, time);
+      star.draw(ctx, width, height, offsetX, offsetY);
+    }
+
+    requestAnimationFrame(frame);
+  }
+
+  window.addEventListener("resize", setup);
+
+  setup();
+  frame();
+</script>

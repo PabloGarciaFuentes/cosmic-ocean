@@ -1,0 +1,212 @@
+@import "tailwindcss";
+
+/* ============================================
+   COSMIC OCEAN - Design System
+   ============================================ */
+
+/* Custom Theme Variables via Tailwind v4 */
+@theme {
+  /* --- Color Palette --- */
+  /* Deep Space Backgrounds */
+  --color-cosmic-void: #050508;
+  --color-cosmic-deep: #0a0a14;
+  --color-cosmic-navy: #0d0d1a;
+  --color-cosmic-mid: #121224;
+  
+  /* Ocean Depths */
+  --color-ocean-abyss: #071620;
+  --color-ocean-deep: #0d2a3a;
+  --color-ocean-teal: #0f4a5e;
+  --color-ocean-glow: #14667a;
+  
+  /* Nebula Accents */
+  --color-nebula-purple: #1a0a2e;
+  --color-nebula-magenta: #3d0f4d;
+  --color-nebula-pink: #5a1a6e;
+  
+  /* Bioluminescent Highlights */
+  --color-glow-cyan: #00d4ff;
+  --color-glow-teal: #00ffd4;
+  --color-glow-violet: #a855f7;
+  --color-glow-magenta: #e879f9;
+  
+  /* Text Colors */
+  --color-text-primary: #f0f4ff;
+  --color-text-secondary: #8b9bc6;
+  --color-text-muted: #5a6a9a;
+  
+  /* --- Typography --- */
+  --font-display: 'Orbitron', 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter', 'Outfit', system-ui, sans-serif;
+  
+  /* --- Spacing Scale --- */
+  --spacing-section: 8rem;
+  --spacing-component: 4rem;
+  
+  /* --- Animation Timings --- */
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+  --duration-ultra: 1000ms;
+  
+  /* --- Easing --- */
+  --ease-fluid: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  
+  /* --- Shadows & Glows --- */
+  --shadow-glow-cyan: 0 0 30px rgba(0, 212, 255, 0.4);
+  --shadow-glow-violet: 0 0 30px rgba(168, 85, 247, 0.4);
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-cosmic-void);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Noise texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.02;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ============================================
+   Typography
+   ============================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--color-glow-cyan), var(--color-glow-violet));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================
+   Custom Animations
+   ============================================ */
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+@keyframes wave {
+  0% { transform: translateX(0) translateY(0); }
+  50% { transform: translateX(-25px) translateY(10px); }
+  100% { transform: translateX(0) translateY(0); }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.animate-wave {
+  animation: wave 8s ease-in-out infinite;
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+
+.glass {
+  background: rgba(13, 13, 26, 0.6);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 212, 255, 0.1);
+}
+
+.glow-border {
+  position: relative;
+}
+
+.glow-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--color-glow-cyan), var(--color-glow-violet));
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, var(--color-glow-cyan), var(--color-ocean-teal));
+  color: var(--color-cosmic-void);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: 0.5rem;
+  transition: all var(--duration-normal) var(--ease-fluid);
+  box-shadow: var(--shadow-glow-cyan);
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 50px rgba(0, 212, 255, 0.6);
+}
+
+.section-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  color: var(--color-text-secondary);
+  font-size: 1.125rem;
+  max-width: 40ch;
+}
