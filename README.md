@@ -1,43 +1,60 @@
-# Astro Starter Kit: Minimal
+# 🌌 Cosmic Ocean | Electronic Music Artist Portfolio
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Welcome to the **Cosmic Ocean** official web application. This project is a premium, high-performance landing page designed for an electronic music artist/DJ, featuring an immersive cosmic aesthetic, smooth animations, and a responsive experience.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+![Cosmic Ocean Hero Preview](./public/images/hero-preview.png)
 
-## 🚀 Project Structure
+## 🚀 Features
 
-Inside of your Astro project, you'll see the following folders and files:
+- **Immersive Visuals**: High-fidelity cosmic nebula background and a dynamic 3D starfield with parallax effects.
+- **Interactive UI**: Built with React Islands in Astro for peak performance (hydration only where needed).
+- **Music Showcase**: Dedicated section for featured releases and full discography.
+- **Tour & Events**: Real-time event listing with ticket booking call-to-actions.
+- **Responsive Design**: Tailored for all devices, from smartphone to 4K desktops (including MacBook 13" optimization).
+- **Dark Mode Aesthetics**: Deep space-inspired color palette with bioluminescent accents.
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+## 🛠️ Tech Stack
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+- **Framework**: [Astro 5](https://astro.build/) (Static Site Generator + Islands Architecture)
+- **UI Logic**: [React](https://reactjs.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/) & CSS Custom Animations
+- **Icons**: [Lucide React](https://lucide.dev/)
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## 📦 Getting Started
 
-Any static assets, like images, can be placed in the `public/` directory.
+To run this project locally, follow these steps:
 
-## 🧞 Commands
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/PabloGarciaFuentes/cosmic-ocean.git
+   cd cosmic-ocean
+   ```
 
-All commands are run from the root of the project, from a terminal:
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+3. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
 
-## 👀 Want to learn more?
+4. **Open your browser:**
+   Navigate to `http://localhost:4321`
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## 🎨 Design System
+
+The project uses a custom-built design system defined in `src/styles/global.css`:
+
+- **Typography**: 'Orbitron' (Display) & 'Inter' (Body)
+- **Colors**: Deep Navy, Glow Cyan, Nebula Violet
+- **Animations**: Organic nebula flows and twinkling starfields.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+*Created with ❤️ for Cosmic Ocean.*
