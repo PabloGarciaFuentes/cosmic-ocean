@@ -1,9 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Navigation from "../components/Navigation.astro";
-import Hero from "../components/Hero.astro";
-import About from "../components/About.astro";
-import Footer from "../components/Footer.astro";
+import Navigation from "../components/Navigation/Navigation.astro";
+import Hero from "../components/Hero/Hero.astro";
+import About from "../components/About/About.astro";
+import Footer from "../components/Footer/Footer.astro";
 
 // React Islands (client-side interactive components)
 import MusicPlayer from "../components/MusicPlayer.jsx";
@@ -12,19 +12,19 @@ import ContactForm from "../components/ContactForm.jsx";
 ---
 
 <Layout>
-	<Navigation />
+  <Navigation />
 
-	<main>
-		<Hero />
+  <main>
+    <Hero />
 
-		<MusicPlayer client:visible />
+    <MusicPlayer client:visible />
 
-		<TourEvents client:visible />
+    <TourEvents client:visible />
 
-		<About />
+    <About />
 
-		<ContactForm client:visible />
-	</main>
+    <ContactForm client:visible />
+  </main>
 
-	<Footer />
+  <Footer />
 </Layout>

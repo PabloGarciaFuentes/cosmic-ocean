@@ -1,0 +1,84 @@
+---
+import {
+  Instagram,
+  Twitter,
+  Facebook,
+  Youtube,
+  Music2,
+  Disc3,
+  Headphones,
+  Mail,
+} from "lucide-react";
+import "./Footer.css";
+---
+
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    <!-- Brand Section -->
+    <div class="footer-brand">
+      <h3 class="footer-logo">COSMIC<span>OCEAN</span></h3>
+      <p class="footer-tagline">
+        Crafting sonic journeys through space and depth.
+      </p>
+    </div>
+
+    <!-- Streaming Links -->
+    <div class="footer-section">
+      <h4 class="footer-heading">Listen</h4>
+      <div class="streaming-links">
+        <a href="#" class="streaming-link" aria-label="Spotify">
+          <Music2 size={20} />
+          <span>Spotify</span>
+        </a>
+        <a href="#" class="streaming-link" aria-label="Apple Music">
+          <Disc3 size={20} />
+          <span>Apple Music</span>
+        </a>
+        <a href="#" class="streaming-link" aria-label="SoundCloud">
+          <Headphones size={20} />
+          <span>SoundCloud</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Social Links -->
+    <div class="footer-section">
+      <h4 class="footer-heading">Connect</h4>
+      <div class="social-links">
+        <a href="#" class="social-link" aria-label="Instagram">
+          <Instagram size={22} />
+        </a>
+        <a href="#" class="social-link" aria-label="Twitter">
+          <Twitter size={22} />
+        </a>
+        <a href="#" class="social-link" aria-label="Facebook">
+          <Facebook size={22} />
+        </a>
+        <a href="#" class="social-link" aria-label="YouTube">
+          <Youtube size={22} />
+        </a>
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="footer-section">
+      <h4 class="footer-heading">Booking</h4>
+      <a href="mailto:booking@cosmicocean.com" class="footer-email">
+        <Mail size={18} />
+        booking@cosmicocean.com
+      </a>
+    </div>
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="footer-bottom">
+    <p class="copyright">
+      &copy; {new Date().getFullYear()} Cosmic Ocean. All rights reserved.
+    </p>
+    <nav class="footer-nav">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Press Kit</a>
+      <a href="#">Terms</a>
+    </nav>
+  </div>
+</footer>

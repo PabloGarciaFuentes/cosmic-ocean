@@ -1,0 +1,70 @@
+---
+import { Menu, X } from "lucide-react";
+import "./Navigation.css";
+---
+
+<nav id="nav" class="nav">
+  <div class="nav-container">
+    <a href="#hero" class="nav-logo">
+      COSMIC<span>OCEAN</span>
+    </a>
+
+    <div class="nav-links">
+      <a href="#music">Music</a>
+      <a href="#tour">Tour</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    <button class="nav-toggle" aria-label="Toggle menu" id="navToggle">
+      <Menu size={24} className="menu-icon" id="menuOpen" />
+      <X size={24} className="close-icon" id="menuClose" />
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#music">Music</a>
+    <a href="#tour">Tour</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<script>
+  const navToggle = document.getElementById("navToggle");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const nav = document.getElementById("nav");
+  const menuOpen = document.getElementById("menuOpen");
+  const menuClose = document.getElementById("menuClose");
+
+  let isMenuOpen = false;
+
+  navToggle?.addEventListener("click", () => {
+    isMenuOpen = !isMenuOpen;
+    mobileMenu?.classList.toggle("open", isMenuOpen);
+    menuOpen?.classList.toggle("hidden", isMenuOpen);
+    menuClose?.classList.toggle("hidden", !isMenuOpen);
+  });
+
+  // Close menu on link click
+  mobileMenu?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      isMenuOpen = false;
+      mobileMenu?.classList.remove("open");
+      menuOpen?.classList.remove("hidden");
+      menuClose?.classList.add("hidden");
+    });
+  });
+
+  // Sticky nav on scroll - only add background, stay visible
+  window.addEventListener("scroll", () => {
+    const currentScroll = window.scrollY;
+
+    if (currentScroll > 100) {
+      nav?.classList.add("scrolled");
+    } else {
+      nav?.classList.remove("scrolled");
+    }
+  });
+</script>
